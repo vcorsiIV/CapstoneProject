@@ -1,0 +1,36 @@
+﻿body {
+    background-color: rgb(222,242,249);
+}
+
+
+div.nav {
+    font-size: 19px;
+    font: bold;
+    background-color: rgb(148,214,10);
+}
+
+.navbar-brand {
+    color: rgb(42, 56, 63);
+    font-size: 32px;
+    font: bold;
+    font-family: 'Bodoni MT';
+    top: 0;
+    background-color: rgb(148,214,10);
+    width: 500px;
+    height: 95px;
+}
+
+.ActionLink {
+    color: red;
+}
+
+    .navbar-brand:hover, .colorize:hover {
+        color: rgb(235, 136, 45);
+        background-color: rgb(148,214,10);
+    }
+
+
+.body-content {
+    font-family: Perpetua;
+    font-size: 18px;
+}

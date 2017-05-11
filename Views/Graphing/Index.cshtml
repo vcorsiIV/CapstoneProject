@@ -1,0 +1,296 @@
+﻿
+@model IEnumerable<ErieHack_TeamEdgwater.Models.Graph.LakeData>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>@ViewBag.Title.</h2>
+
+<script>
+    function checkG(a, x) {
+        var ele = document.getElementsByName(a);
+        var flag = 0;
+        for (var i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+                flag = 1;
+
+        }
+        if (flag == 1)
+            document.getElementById(x).disabled = false;
+        else
+            document.getElementById(x).disabled = true;
+    }
+    function checkT(a, x) {
+        var ele = document.getElementsByName(a);
+        var flag = 0;
+        for (var i = 0; i < ele.length; i++) {
+            if (ele[i].checked)
+                flag = 1;
+
+        }
+        if (flag == 1)
+            document.getElementById(x).disabled = false;
+        else
+            document.getElementById(x).disabled = true;
+    }
+</script>
+
+<table>
+    <tr>
+        <th>
+            Visual Graph
+        </th>
+        <th>
+            Table Data
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <fieldset>
+                @using (Html.BeginForm("Exp", "Graphing"))
+                {
+                    <div id="divInterestDeatils"></div>
+
+                    <ol>
+                        <li>
+                            <input id="Para" type="radio"
+                                   name="Para" onclick="checkG('Para', 'btn')"
+                                   value="ChlorophyllA" />ChlorophyllA
+
+                        </li>
+                        <li>
+                            <input id="Para" type="radio"
+                                   name="Para" onclick="checkG('Para', 'btn')"
+                                   value="DRPhos" />DRPhos
+
+                        </li>
+                        <li>
+                            <input id="Para" type="radio"
+                                   name="Para" onclick="checkG('Para', 'btn')"
+                                   value="NH3" />NH3
+
+                        </li>
+                        <li>
+                            <input id="Para" type="radio"
+                                   name="Para" onclick="checkG('Para', 'btn')"
+                                   value="NO3-NO2" />NO3-NO2
+
+                        </li>
+                        <li>
+                            <input id="Para" type="radio"
+                                   name="Para" onclick="checkG('Para', 'btn')"
+                                   value="Total-P" />Total-P
+
+                        </li>
+                    </ol>
+
+                    <button id="btn" disabled>Calculate</button>
+                }
+            </fieldset>
+        </td>
+        <td>
+            <fieldset>
+                @using (Html.BeginForm("ExpTbl", "Graphing"))
+                {
+                    <div id="divInterestDeatils"></div>
+
+                    <ol>
+                        <li>
+                            <input id="Para" type="checkbox"
+                                   name="Para" onclick="checkT('Para', 'btn2')"
+                                   value="ChlorophyllA" />ChlorophyllA
+
+                        </li>
+                        <li>
+                            <input id="Para" type="checkbox"
+                                   name="Para" onclick="checkT('Para', 'btn2')"
+                                   value="DRPhos" />DRPhos
+
+                        </li>
+                        <li>
+                            <input id="Para" type="checkbox"
+                                   name="Para" onclick="checkT('Para', 'btn2')"
+                                   value="NH3" />NH3
+
+                        </li>
+                        <li>
+                            <input id="Para" type="checkbox"
+                                   name="Para" onclick="checkT('Para', 'btn2')"
+                                   value="NO3-NO2" />NO3-NO2
+
+                        </li>
+                        <li>
+                            <input id="Para" type="checkbox"
+                                   name="Para" onclick="checkT('Para', 'btn2')"
+                                   value="Total-P" />Total-P
+
+                        </li>
+                    </ol>
+
+                    <button id="btn2" disabled>Calculate</button>
+                }
+            </fieldset>
+        </td>
+    </tr>
+</table>
+
+<table class="table" on id="tbl" hidden="hidden">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleTime)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parameter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Units)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SampleTime)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Units)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<table class="ParaInfo" id="tbl2">
+    <tr>
+        <th>
+            Parameter
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+            Information On Parameter
+        </th>
+    </tr>
+    <tr>
+        <td>
+            ChlorophyllA
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            ChlorophyllA is used to estimate the amount of algae in a lake.
+            <br />
+            Algae in a lake adds oxygen to the water as a by-product of photosynthesis.
+            <br />
+            However if there is a vast amount of algae in a lake it can produce a foul
+            <br />
+            odor, and when algae dies its decomposition uses the oxygen itn the water
+            <br />
+            causing fish to migrate to shalllower areas wehre oxygen is still available.
+        </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td></td>
+        <td></td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>
+            DRPhos
+        <td></td>
+        <td></td>
+        <td>
+            This is the mesurement of the Dissolved Reactive Phosphorus levels.
+            <br />
+            The DRPhos also goes by another name, Orthophosphates. These are a constituent
+            <br />
+            in fertilizer used for agriculture.  When found in natural water it provides a
+            <br />
+            estimate on the amount of phosphorus that aids algae and other plant growths.
+        </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td></td>
+        <td></td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>
+            NH3
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            Unionized ammonia. NH3 is the principal form of toxic ammonia. Reports
+            <br />
+            state that levels ranging from 0.53 to 22.8 mg/L are toxic to freshwater organisms.
+            <br />
+            These levels are dependent upon the the temperature and pH levels in the water.
+        </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td></td>
+        <td></td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>
+            NO3-NO2
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            Nitrates(NO3) and Nitrites(NO2).
+            <br />
+            Nitrate reaction in fresh water can cause oxygen depletion, causing aquatic
+            <br />
+            organisms having a smaller oxygen supply.  The cause of Nitrates is the conversion
+            <br />
+            of nitrites(NO2) to nitrates(NO3).  Nitrites are produced by adding nitrogen into
+            <br />
+            bodies of water through municipal and industral wastewater, septic tank, animal waste,
+            <br />
+            and car exhausts.
+        </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td></td>
+        <td></td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td>
+            Total-P
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+            Total Phosphorus. Phosphorus is a nutrient that aids in plant growth.
+            <br />
+            The more phosphorus is available, the more plants and algae there are in a lake.
+            <br />
+            Major sources include human and animal waste, soil erosion, detergents, septic
+            <br />
+            systems and runoff from fretilized lands.
+        </td>
+    </tr>
+</table>

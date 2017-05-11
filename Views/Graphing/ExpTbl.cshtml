@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ErieHack_TeamEdgwater.Models.Graph.LakeData>
+
+@{
+    ViewBag.Title = "ExpTbl";
+}
+
+<script>
+    var i = 0;
+    function runit() {
+        if (i == 0) {
+            $(".table").hide();
+            i++;
+        }
+        else {
+            $(".table").show();
+            i--;
+        }
+    }
+</script>
+
+<h2>ExpTbl</h2>
+
+<button id="test" onclick="runit()">Hide Table</button>
+
+<table class="table" id="tbl">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleTime)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parameter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Units)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SampleTime)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Units)
+            </td>
+
+        </tr>
+    }
+
+</table>

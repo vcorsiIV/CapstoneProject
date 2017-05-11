@@ -1,0 +1,79 @@
+﻿
+@model IEnumerable<ErieHack_TeamEdgwater.Models.Graph.LakeData>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<script>
+    var i = 0;
+    function runit() {
+        if (i == 0) {
+            $(".table").hide();
+            i++;
+        }
+        else {
+            $(".table").show();
+            i--;
+        }
+    }
+</script>
+
+<button id="test" onclick="runit()">Hide Table</button>
+
+
+@{
+
+    var chart = new Chart(width: 500, height: 500, theme: ChartTheme.Blue)
+            .AddTitle("Changes Over Time")
+            .SetXAxis(("Dates").ToString())
+            .SetYAxis(("Values").ToString())
+            .AddLegend("Parameter Chosen")
+            .AddSeries("Default", chartType: "Area",
+                xValue: Model, xField: ("SampleTime").ToString(),
+                yValues: Model, yFields: ("Result").ToString()).Write();
+}
+
+<table class="table" id="tbl">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleTime)
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parameter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Units)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SampleTime)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Parameter)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Units)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
